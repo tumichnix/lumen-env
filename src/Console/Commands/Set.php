@@ -12,7 +12,7 @@ class Set extends Command
     public function handle()
     {
         $path = base_path('.env');
-        $key = $this->argument('key');
+        $key = strtoupper($this->argument('key'));
         $val = $this->argument('val');
 
         if (! file_exists($path)) {

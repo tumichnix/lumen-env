@@ -12,7 +12,7 @@ class Get extends Command
     public function handle()
     {
         $path = base_path('.env');
-        $key = $this->argument('key');
+        $key = strtoupper($this->argument('key'));
 
         if (! file_exists($path)) {
             touch($path);
