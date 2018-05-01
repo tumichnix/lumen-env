@@ -7,7 +7,7 @@ use Illuminate\Console\Command;
 class Set extends Command
 {
     protected $signature = 'env:set {key} {val}';
-    protected $description = 'Set the value of a specific environment';
+    protected $description = 'Set the value for a specific key';
 
     public function handle()
     {

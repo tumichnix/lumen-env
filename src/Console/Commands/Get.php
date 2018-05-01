@@ -7,7 +7,7 @@ use Illuminate\Console\Command;
 class Get extends Command
 {
     protected $signature = 'env:get {key}';
-    protected $description = 'Get the value of a specific environment';
+    protected $description = 'Get the value of a specific key';
 
     public function handle()
     {
@@ -20,7 +20,7 @@ class Get extends Command
 
         $ini = parse_ini_file($path, false, INI_SCANNER_RAW);
         if (! array_key_exists($key, $ini)) {
-            $this->error('Environment "'.$key.'" dosent exists!');
+            $this->error('Key "'.$key.'" dosent exists!');
         } else {
             $this->comment($ini[$key]);
         }
