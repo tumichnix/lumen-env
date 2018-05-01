@@ -3,8 +3,8 @@
 namespace Tumichnix\Env\Console\Commands;
 
 use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Input\InputArgument;
 
 class Get extends Command
 {
@@ -16,13 +16,13 @@ class Get extends Command
         $path = base_path($this->option('file'));
         $env = $this->argument('env');
 
-        if (!file_exists($path)) {
+        if (! file_exists($path)) {
             touch($path);
         }
 
         $ini = parse_ini_file($path, false, INI_SCANNER_RAW);
-        if (!array_key_exists($env, $ini)) {
-            $this->error('Environment "' . $env . '" dosent exists!');
+        if (! array_key_exists($env, $ini)) {
+            $this->error('Environment "'.$env.'" dosent exists!');
         } else {
             $this->comment($ini[$env]);
         }

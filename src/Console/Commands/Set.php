@@ -3,8 +3,8 @@
 namespace Tumichnix\Maintenance\Console\Commands;
 
 use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Input\InputArgument;
 
 class Set extends Command
 {
@@ -16,10 +16,12 @@ class Set extends Command
         $path = base_path($this->option('file'));
         $env = $this->argument('env');
         $set = $this->option('set');
-        if (!file_exists($path)) touch($path);
+        if (! file_exists($path)) {
+            touch($path);
+        }
 
         $ini = parse_ini_file($path, false, INI_SCANNER_RAW);
-        $this->comment('set ENV_VAR "' . $env . '" => ' . $set);
+        $this->comment('set ENV_VAR "'.$env.'" => '.$set);
         $ini[$env] = $set;
         write_ini_file($path, $ini);
     }
