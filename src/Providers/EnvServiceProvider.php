@@ -4,7 +4,7 @@ namespace Tumichnix\Env\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Tumichnix\Env\Console\Commands\Get;
-use Tumichnix\Maintenance\Console\Commands\Set;
+use Tumichnix\Env\Console\Commands\Set;
 
 class EnvServiceProvider extends ServiceProvider
 {

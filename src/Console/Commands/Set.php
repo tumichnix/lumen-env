@@ -1,6 +1,6 @@
 <?php
 
-namespace Tumichnix\Maintenance\Console\Commands;
+namespace Tumichnix\Env\Console\Commands;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
