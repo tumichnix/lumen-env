@@ -2,16 +2,16 @@
 
 namespace Tumichnix\Env\Console\Commands;
 
-use Illuminate\Console\Command;
+use Tumichnix\Env\Console\Command;
 
 class Set extends Command
 {
     protected $signature = 'env:set {key} {val}';
-    protected $description = 'Set the value for a specific key';
+    protected $description = 'Set the value for a specific key ';
 
     public function handle()
     {
-        $path = base_path('.env');
+        $path = $this->getPath();
         $key = strtoupper($this->argument('key'));
         $val = $this->argument('val');
 
@@ -19,19 +19,10 @@ class Set extends Command
             touch($path);
         }
 
-        $ini = parse_ini_file($path, false, INI_SCANNER_RAW);
+        $ini = $this->parseEnv($path);
         $this->comment('set "'.$key.'" => '.$val);
         $ini[$key] = $val;
 
         $this->store($path, $ini);
-    }
-
-    protected function store($file, array $data)
-    {
-        $output = '';
-        foreach ($data as $key => $val) {
-            $output .= "$key=$val".PHP_EOL;
-        }
-        file_put_contents($file, trim($output));
     }
 }

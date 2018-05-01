@@ -2,7 +2,7 @@
 
 namespace Tumichnix\Env\Console\Commands;
 
-use Illuminate\Console\Command;
+use Tumichnix\Env\Console\Command;
 
 class Get extends Command
 {
@@ -11,14 +11,14 @@ class Get extends Command
 
     public function handle()
     {
-        $path = base_path('.env');
+        $path = $this->getPath();
         $key = strtoupper($this->argument('key'));
 
         if (! file_exists($path)) {
             touch($path);
         }
 
-        $ini = parse_ini_file($path, false, INI_SCANNER_RAW);
+        $ini = $this->parseEnv($path);
         if (! array_key_exists($key, $ini)) {
             $this->error('Key "'.$key.'" dosent exists!');
         } else {
