@@ -30,7 +30,7 @@ class Set extends Command
     {
         $output = '';
         foreach ($data as $key => $val) {
-            $output .= "$key=$val" . PHP_EOL;
+            $output .= "$key=$val".PHP_EOL;
         }
         file_put_contents($file, trim($output));
     }
